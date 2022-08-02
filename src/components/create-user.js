@@ -1,32 +1,34 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import axios from 'axios';
-import { error } from "logrocket";
+// import PasswordStrengthBar from 'react-password-strength-bar'
+// import { useState, useEffect } from 'react'
+// import { Link } from 'react-router-dom'
+// import toast from 'react-hot-toast'
+import '../css/Forms.css'
 
+// const mailer = require('../components/mailer')
 
-export default class CreateUser extends Component{
+export default class CreateUser extends Component {
 
-    
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.onChangeUserName = this.onChangeUserName.bind(this);
-        this.onChangeUserEmail = this.onChangeUserEmail.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.state = {
-            name:'',
-            email:''
+            name: '',
+            username: '',
+            email: '',
+            type: '',
         }
     }
-    onChangeUserName(e){
-        this.setState({name: e.target.value})
-    }
-    onChangeUserEmail(e){
-        this.setState({email: e.target.value})
-    }
-    onSubmit(e){
+
+    onSubmit(e) {
         e.preventDefault()
+
         const userObject = {
             name: this.state.name,
-            email: this.state.email
+            username: this.state.username,
+            email: this.state.email,
+            type: this.state.type
         };
         axios.post('http://localhost:4000/users/create', userObject)
             .then((res) => {
@@ -34,22 +36,62 @@ export default class CreateUser extends Component{
             }).catch((error) => {
                 console.log(error)
             });
-        this.setState({name:'',email:''})
+        this.setState({
+            name: '',
+            username: '',
+            email: '',
+        })
 
+        alert('User has been created');
     }
-    render(){
-        return(
-            <div className="wrapper">
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Enter Name</label>
-                        <input type="text" value={this.state.name} onChange={this.onChangeUserName} className="form-control" />
-                    </div>
 
-                    <div className="form-group">
-                        <label>Enter Email</label>
-                        <input type="text" value={this.state.email} onChange={this.onChangeUserEmail} className="form-control" />
-                    </div>
+    // }
+
+    render() {
+
+        return (
+            <div className="form">
+                <h2 className="text-center"> Register Page</h2>
+                <form onSubmit={this.onSubmit}>
+
+                    <label>Name:</label>
+                    <input
+                        type="text"
+                        value={this.state.name}
+                        onChange={(e) => this.setState({ name: e.target.value })}
+                        placeholder="Steven"
+                        autoFocus
+                        required
+                    />
+
+                    <label>Username:</label>
+                    <input
+                        type="text"
+                        value={this.state.username}
+                        onChange={(e) => this.setState({ username: e.target.value })}
+                        placeholder="Steven123"
+                        autoFocus
+                        required
+                    />
+
+                    <label>Email:</label>
+                    <input
+                        id="email"
+                        type="email"
+                        required
+                        value={this.state.email}
+                        onChange={(e) => this.setState({ email: e.target.value })}
+                        placeholder="sample123@gmail.com"
+                    />
+
+                    <label>User Type:</label>
+                    <select id="type" name="type" onChange={(e) => this.setState({ type: e.target.value })}>
+                        <option value="" selected disbled hidden>Select Type</option>
+                        <option value="User">User</option>
+                        <option value="Company">Company</option>
+                    </select>
+
+
 
 
                     <div className="form-group">

@@ -1,0 +1,57 @@
+.formJ{
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 30px 10px;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: left;
+    align-items: left;
+}
+
+.formJ textarea{
+    height: 150px;
+    width: 100%;
+    padding: 10px 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: 2px solid #ddd;
+    display: block;
+}
+
+.formJ label{
+    text-align: left;
+    display: block;
+}
+
+.formJ h2 {
+    font-size: 20px;
+    color: #f1356d;
+    margin-bottom: 30px;
+}
+
+.formJ input,
+.formJ select{
+    width: 100%;
+    padding: 6px 10px;
+    margin-top: 3px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    display: block;
+}
+
+.formJ button{
+    align-items: right;
+    display: inline-block;
+    background-color: rgb(206, 197, 197);
+    color: rgb(0, 0, 0);
+    padding: 8px 20px;
+    border: 1px solid var(--primary);
+}
+
+.err-msg{
+    text-align: left;
+    display: block;
+    color: red;
+}
