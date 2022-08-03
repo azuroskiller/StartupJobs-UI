@@ -1,5 +1,6 @@
+//For calling to page function
+
 import './App.css';
-// import react from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
 import CreateUser from './components/create-user';
@@ -36,7 +37,6 @@ function App() {
           <Route path='/my-job' exact element={<MyJob/>} />
         </Routes>
       </Router>
-
     </>
   );
 }

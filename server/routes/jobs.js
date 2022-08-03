@@ -3,6 +3,8 @@ let mongoose = require('mongoose'),
     router = express.Router(),
     job = require('../models/jobs-schema');
 
+
+//Retrieve all job and sort by their last date available
 router.route('/').get((req, res, next) => {
     job.aggregate([
         { $sort: { endDate: -1 } }
@@ -16,7 +18,7 @@ router.route('/').get((req, res, next) => {
 });
 
 
-
+//Create job and save to DB
 router.post('/create', async (req, res) => {
 
     const { jobName, country, company, salary, skills, jobType, jobDesc, jobReq, jobResponsibility, industry, startDate, endDate, companyID } = req.body;
@@ -44,6 +46,7 @@ router.post('/create', async (req, res) => {
 });
 
 
+//To retrieve current user(company) jobs posted by matching the id
 router.post('/myJobs', async (req, res, next) => {
     job.aggregate([
         { $match: { "companyID": req.body.id } },
@@ -57,6 +60,7 @@ router.post('/myJobs', async (req, res, next) => {
     })
 });
 
+//For search jobs matching with every collumn in the document
 router.post('/search', async (req, res, next) => {
 
     job.aggregate([
@@ -71,6 +75,7 @@ router.post('/search', async (req, res, next) => {
     })
 });
 
+//For delete job by searching the id
 router.post('/deleteJob', async (req, res) => {
 
     const Job = await job.findByIdAndRemove(req.body.id).exec();
@@ -82,6 +87,7 @@ router.post('/deleteJob', async (req, res) => {
     }
 })
 
+//For retrieving job to be edited
 router.post('/getJob', async (req, res) => {
     const Job = await job.findOne({ _id: req.body.tempid })
 
@@ -108,6 +114,7 @@ router.post('/getJob', async (req, res) => {
     }
 })
 
+//To update job
 router.post('/updateJob', async (req, res) => {
 
     const Job = await job.findByIdAndUpdate(req.body.id,
@@ -136,40 +143,5 @@ router.post('/updateJob', async (req, res) => {
     }
 })
 
-router.route('/edit/:id').get((req, res) => {
-    job.findById(req.params.id, (error, data) => {
-        if (error) {
-            return next(error)
-        } else {
-            res.json(data)
-        }
-    })
-});
-
-router.route('/update/:id').get((req, res, next) => {
-    job.findByIdAndUpdate(req.params.id, {
-        $set: req.body
-    }, (error, data) => {
-        if (error) {
-            return next(error)
-            console.log(error);
-        } else {
-            res.json(data)
-            console.log('User Updated Successfully')
-        }
-    })
-})
-
-router.route('/delete/:id').delete((req, res, next) => {
-    job.findByIdAndRemove(req.params.id, (error, data) => {
-        if (error) {
-            return next(error);
-        } else {
-            res.status(200).json({
-                msg: data
-            })
-        }
-    })
-})
 
 module.exports = router;

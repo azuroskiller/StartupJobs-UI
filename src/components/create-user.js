@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-// import PasswordStrengthBar from 'react-password-strength-bar'
-// import { useState, useEffect } from 'react'
-// import { Link } from 'react-router-dom'
-// import toast from 'react-hot-toast'
 import '../css/Forms.css'
-
-// const mailer = require('../components/mailer')
 
 export default class CreateUser extends Component {
 
@@ -21,8 +15,9 @@ export default class CreateUser extends Component {
         }
     }
 
+    //Function when submit, direct to create user function
     onSubmit(e) {
-        e.preventDefault()
+        e.preventDefault() //Prevent from automatically running when page load
 
         const userObject = {
             name: this.state.name,
@@ -45,7 +40,6 @@ export default class CreateUser extends Component {
         alert('User has been created. Please check your email.');
     }
 
-    // }
 
     render() {
 
@@ -90,9 +84,6 @@ export default class CreateUser extends Component {
                         <option value="User">User</option>
                         <option value="Company">Company</option>
                     </select>
-
-
-
 
                     <div className="form-group">
                         <input type="submit" value="Create User" className="btn btn-success btn-block" />

@@ -1,3 +1,5 @@
+//For data display
+
 import React, { Component } from 'react';
 class DataTable extends Component {
 
@@ -28,7 +30,7 @@ class DataTable extends Component {
                 </td>
                 <td>
                     {
-                        (this.state.today) < this.props.obj.endDate?
+                        (this.state.today) < this.props.obj.endDate? //To compare today date and date job ending if true display active
                         <p>Active</p>
                         :
                         <p>Inactive</p>

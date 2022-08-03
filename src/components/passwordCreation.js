@@ -13,7 +13,7 @@ export default class FinishUser extends Component {
             confirmPassword: '',
         }
     }
-    validate() {
+    validate() {//To compare if the password entered is same as in the db
         let isValid = true;
         let password = this.state.password
         let cpassword = this.state.confirmPassword
@@ -36,7 +36,7 @@ export default class FinishUser extends Component {
                 email: this.state.email,
                 password: this.state.password,
             };
-            axios.post('http://localhost:4000/users/finishUser', userObject)
+            axios.post('http://localhost:4000/users/finishUser', userObject)//Update the user account with their password
                 .then((res) => {
                     console.log(res.data)
                 }).catch((error) => {

@@ -30,6 +30,7 @@ export default class Login extends Component {
                 const data = res.data
 
                 if (data.token) {
+                    //Store the current user's information by using localstorage method
                     localStorage.setItem('token', data.token)
                     localStorage.setItem('user', data.user)
                     localStorage.setItem('type', data.type)

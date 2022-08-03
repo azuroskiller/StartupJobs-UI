@@ -1,3 +1,5 @@
+//For data display
+
 import React, { Component } from 'react';
 import { Button } from '../Button';
 import axios from 'axios';
@@ -11,6 +13,7 @@ class DataTable extends Component {
         }
     }
 
+    //Delete job function
     deleteJob = () => {
         const jobObject = {
             id: this.props.obj._id,
@@ -30,7 +33,7 @@ class DataTable extends Component {
         localStorage.setItem("jobID", this.props.obj._id)
         console.log(this.props.obj._id)
         window.location.href = '/edit-job'
-    }
+    }//Edit job function, redirecting to editjob page
 
     render() {
         return (
@@ -52,7 +55,7 @@ class DataTable extends Component {
                 </td>
                 <td>
                     {
-                        (this.state.today) < this.props.obj.endDate ?
+                        (this.state.today) < this.props.obj.endDate ? //To compare today date and date job ending if true display active
                             <p>Active</p>
                             :
                             <p>Inactive</p>

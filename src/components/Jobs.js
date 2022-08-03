@@ -1,6 +1,8 @@
+//Page to display all the jobs
+
 import React, { Component } from 'react';
 import axios from 'axios';
-import DataTable from './Data/jobs-data';
+import DataTable from './Data/jobs-data'; //Fetch jobs-data.js to get the data
 
 
 export default class Jobs extends Component {
@@ -19,7 +21,7 @@ export default class Jobs extends Component {
         const jobObject = {
             input: this.state.input,
         };
-        axios.post('http://localhost:4000/jobs/search', jobObject)
+        axios.post('http://localhost:4000/jobs/search', jobObject)//Searching function
             .then((res) => {
                 this.setState({ jobsCollection: res.data })
             }).catch((error) => {
@@ -31,7 +33,7 @@ export default class Jobs extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/jobs')
+        axios.get('http://localhost:4000/jobs')//Fetch job function
             .then(res => {
                 this.setState({ jobsCollection: res.data })
             })
@@ -40,6 +42,7 @@ export default class Jobs extends Component {
             })
     }
 
+    //To map the data retrieve and insert into object
     dataTable() {
         return this.state.jobsCollection.map((data, i) => {
             return <DataTable
@@ -79,6 +82,7 @@ export default class Jobs extends Component {
                             </tr>
                         </thead>
                         <tbody>
+                            {/* To display the data, to edit the data go to jobs-data.js */}
                             {this.dataTable()}
                         </tbody>
                     </table>

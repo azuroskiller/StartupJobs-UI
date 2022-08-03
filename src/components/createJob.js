@@ -25,6 +25,7 @@ export default class CreateJob extends Component {
         };
     }
 
+    //Submit function leading to create job function
     onSubmit(e) {
         e.preventDefault()
 
@@ -32,7 +33,7 @@ export default class CreateJob extends Component {
 
             jobName: this.state.jobName,
             country: this.state.country,
-            company: localStorage.getItem('user'),
+            company: localStorage.getItem('user'), //Refer to login.js
             salary: this.state.salary,
             skills: this.state.skills,
             jobType: this.state.jobType,
@@ -42,7 +43,7 @@ export default class CreateJob extends Component {
             industry: this.state.industry,
             startDate: this.state.startDate,
             endDate: this.state.endDate,
-            companyID: localStorage.getItem('id'),
+            companyID: localStorage.getItem('id'), //Refer to login.js
         };
         axios.post('http://localhost:4000/jobs/create', jobObject)
             .then((res) => {

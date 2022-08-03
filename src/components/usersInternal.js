@@ -1,3 +1,5 @@
+//Page to display NEXEA user
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import DataTable from './Data/user-internal-data';

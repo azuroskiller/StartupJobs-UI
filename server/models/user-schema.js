@@ -1,3 +1,5 @@
+//Schema for Users document in the database
+
 const mongoose = require('mongoose');
 const moment = require('moment-timezone')
 const jwt = require('jsonwebtoken')
@@ -49,5 +51,5 @@ let userSchema = new Schema({
 }, {
     collection: 'users'
 })
-userSchema.index({'$**': 'text'});
+userSchema.index({'$**': 'text'}); //For searching function
 module.exports = mongoose.model('User', userSchema)

@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-// import PasswordStrengthBar from 'react-password-strength-bar'
-// import { useState, useEffect } from 'react'
-// import { Link } from 'react-router-dom'
-// import toast from 'react-hot-toast'
 import '../css/Forms.css'
-
-// const mailer = require('../components/mailer')
 
 export default class CreateUser extends Component {
 
@@ -23,6 +17,7 @@ export default class CreateUser extends Component {
         }
     }
 
+    //Function when submit, direct to create internal user function
     onSubmit(e) {
         e.preventDefault()
         console.log(this.state);
@@ -47,7 +42,7 @@ export default class CreateUser extends Component {
             email: '',
             password: '',
             position: ''
-        })
+        })//Clearing the input
 
         alert('User has been created');
 

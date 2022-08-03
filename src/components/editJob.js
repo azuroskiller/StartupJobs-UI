@@ -25,7 +25,8 @@ export default class EditJob extends Component {
             companyID: '',
         };
     }
-
+    
+    //Function that runs when page load, to diplay the job for edit
     componentDidMount() {
 
         const jobObject = {
@@ -66,7 +67,7 @@ export default class EditJob extends Component {
             id:this.state.id,
             jobName: this.state.jobName,
             country: this.state.country,
-            company: localStorage.getItem('user'),
+            company: localStorage.getItem('user'), //Refer login.js
             salary: this.state.salary,
             skills: this.state.skills,
             jobType: this.state.jobType,

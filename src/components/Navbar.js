@@ -7,6 +7,7 @@ import { Navbar, NavDropdown } from 'react-bootstrap'
 function Header() {
     const [click, setClick] = useState(false);
     const [button, setButon] = useState(true);
+    //Fetching the user's information
     const user = localStorage.getItem('user');
     const type = localStorage.getItem('type');
     const level = localStorage.getItem('level');
@@ -24,7 +25,7 @@ function Header() {
 
     const navigate = useNavigate();
     function Logout() {
-        localStorage.clear();
+        localStorage.clear();//To clear the user information that is saved in localstorage
         navigate('/')
         window.location.reload(false);
     }
@@ -57,7 +58,7 @@ function Header() {
                         localStorage.getItem('user') ?
                             <>
                                 {
-                                    type === "Company" ?
+                                    type === "Company" ? //If user is a company, display post job and my job button
 
                                         <>
                                             <li className='nav-item'>
@@ -79,7 +80,7 @@ function Header() {
                                         </>
                                 }
                                 {
-                                    level === "0" ?
+                                    level === "0" ? //if normal user, hide users button
                                         <>
                                             <li className='nav-item'>
                                                 <NavDropdown title={user} >

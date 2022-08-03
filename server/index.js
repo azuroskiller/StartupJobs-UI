@@ -1,3 +1,5 @@
+//For application server setup
+
 let express = require('express');
 let mongoose = require('mongoose');
 let cors = require('cors');
@@ -21,6 +23,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+//Setting up port
 app.use(cors());
 app.use('/users', userRoute)
 app.use('/jobs', jobRoute)

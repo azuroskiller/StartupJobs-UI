@@ -1,3 +1,5 @@
+//For display on homepage
+
 import React from 'react';
 import '../App.css';
 import { Button } from './Button';
@@ -12,7 +14,7 @@ function HeroSection() {
             <video src='/videos/video-1.mp4' autoPlay loop muted />
             <h1>STARTUP JOBS DATABASE</h1>
             {
-                localStorage.getItem('user') ?
+                localStorage.getItem('user') ? //If user login, display the user's name and remove the register and login button
                     <>
                         <h2>WELCOME {user}</h2>
                     </>

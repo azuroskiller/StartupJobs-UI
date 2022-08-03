@@ -1,9 +1,12 @@
+//For data display
+
 import React, { Component } from 'react';
 import { Button } from '../Button';
 import axios from 'axios';
 
 class DataTable extends Component {
 
+    //Delete user function
     deleteUser = () => {
         const userObject = {
             id: this.props.obj._id,
@@ -20,6 +23,7 @@ class DataTable extends Component {
         window.location.reload()
     }
 
+    //Verify user function
     verifyUser = () => {
 
         console.log(this.props.obj._id)

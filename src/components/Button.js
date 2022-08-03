@@ -1,8 +1,9 @@
+//Button file
+
 import React from 'react';
 import '../css/Button.css';
 
 const STYLES = ['btn--primary', 'btn--outline', 'btn--test', 'btn--delete', 'btn--edit', 'btn--forgot'];
-
 const SIZES = ['btn--medium', 'btn--large','btn--small'];
 
 export const Button = ({

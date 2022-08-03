@@ -1,3 +1,5 @@
+//Schema for Jobs document in the database
+
 const moment = require('moment-timezone')
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
@@ -61,5 +63,5 @@ const JobsSchema = new Schema({
         default: () => moment().utcOffset(+480).format()
     },
 })
-JobsSchema.index({'$**': 'text'});
+JobsSchema.index({'$**': 'text'});//For searching function
 module.exports = mongoose.model('WebCrawler', JobsSchema)

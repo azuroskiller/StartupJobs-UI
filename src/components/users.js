@@ -1,8 +1,7 @@
+//Page to display all external user
 import React, { Component } from 'react';
 import axios from 'axios';
 import DataTable from './Data/user-data';
-// import SearchBar from './SearchBar';
-
 
 export default class Users extends Component {
 

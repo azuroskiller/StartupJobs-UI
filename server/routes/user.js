@@ -7,9 +7,8 @@ const nodemailer = require('nodemailer');
 const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt');
 
-
+//To create user
 router.post('/create', async (req, res) => {
-
 
     // const { name, username, email, password, company, position } = req.body;
     const { name, username, email, type } = req.body;
@@ -83,6 +82,7 @@ router.post('/create', async (req, res) => {
     }
 });
 
+//To create internal/staff user
 router.post('/createInternal', async (req, res) => {
 
     const { name, username, email, password, company, position } = req.body;
@@ -111,6 +111,7 @@ router.post('/createInternal', async (req, res) => {
     }
 });
 
+//For login function
 router.post('/login', async (req, res) => {
 
     const User = await user.findOne({
@@ -121,13 +122,14 @@ router.post('/login', async (req, res) => {
         return { status: 'error', error: 'Invalid Login' }
     }
 
+    //Comparing the password from form to the password in DB by turning the pasword in DB to string
     const isPasswordValid = await bcrypt.compare(
         req.body.password,
         User.password
     )
 
     if (isPasswordValid) {
-
+        //To generate user token
         const jwtoken = jwt.sign(
             {
                 name: User.name,
@@ -141,6 +143,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
+//Get user that is not NEXEA or not internal and sort by verified first
 router.route('/').get((req, res, next) => {
     user.aggregate([
         { $match: { "company": { $ne: "NEXEA" } } },
@@ -154,6 +157,7 @@ router.route('/').get((req, res, next) => {
     })
 });
 
+//Get internal user and sort by verified first
 router.route('/internal').get((req, res, next) => {
     user.aggregate([
         { $match: { "company": "NEXEA" } },
@@ -167,6 +171,7 @@ router.route('/internal').get((req, res, next) => {
     })
 });
 
+//To search user and sort by verified first
 router.post('/search', async (req, res,next) => {
     
     user.aggregate([
@@ -182,6 +187,7 @@ router.post('/search', async (req, res,next) => {
     })
 });
 
+//Get current user details
 router.post('/getUser', async (req, res) => {
     const User = await user.findOne({ username: req.body.username })
 
@@ -202,6 +208,7 @@ router.post('/getUser', async (req, res) => {
     }
 })
 
+//Delete user function
 router.post('/deleteUser', async (req, res) => {
 
     const User = await user.findByIdAndRemove(req.body.id).exec();
@@ -213,6 +220,7 @@ router.post('/deleteUser', async (req, res) => {
     }
 })
 
+//For user verification with email sending
 router.post('/verifyUser', async (req, res) => {
 
     const User = await user.findByIdAndUpdate(req.body.id,
@@ -276,6 +284,7 @@ router.post('/verifyUser', async (req, res) => {
     }
 })
 
+//Function for update user
 router.post('/updateUser', async (req, res) => {
 
     const tempUser = await user.findById(req.body.id)
@@ -305,6 +314,7 @@ router.post('/updateUser', async (req, res) => {
     }
 })
 
+//For passwor creation and pasword change
 router.post('/finishUser', async (req, res) => {
 
     const encryptedPassword = await bcrypt.hash(req.body.password, 10);
@@ -321,43 +331,6 @@ router.post('/finishUser', async (req, res) => {
     } else {
         console.log('User Updated')
     }
-})
-
-
-router.route('/edit/:id').get((req, res) => {
-    user.findById(req.params.id, (error, data) => {
-        if (error) {
-            return next(error)
-        } else {
-            res.json(data)
-        }
-    })
-});
-
-router.route('/update/:id').get((req, res, next) => {
-    user.findByIdAndUpdate(req.params.id, {
-        $set: req.body
-    }, (error, data) => {
-        if (error) {
-            return next(error)
-            console.log(error);
-        } else {
-            res.json(data)
-            console.log('User Updated Successfully')
-        }
-    })
-})
-
-router.route('/delete/:id').delete((req, res, next) => {
-    user.findByIdAndRemove(req.params.id, (error, data) => {
-        if (error) {
-            return next(error);
-        } else {
-            res.status(200).json({
-                msg: data
-            })
-        }
-    })
 })
 
 module.exports = router;
