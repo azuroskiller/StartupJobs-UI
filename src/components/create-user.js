@@ -42,7 +42,7 @@ export default class CreateUser extends Component {
             email: '',
         })
 
-        alert('User has been created');
+        alert('User has been created. Please check your email.');
     }
 
     // }
@@ -84,7 +84,7 @@ export default class CreateUser extends Component {
                         placeholder="sample123@gmail.com"
                     />
 
-                    <label>User Type:</label>
+                    <label>Account Type:</label>
                     <select id="type" name="type" onChange={(e) => this.setState({ type: e.target.value })}>
                         <option value="" selected disbled hidden>Select Type</option>
                         <option value="User">User</option>

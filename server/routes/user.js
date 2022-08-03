@@ -4,17 +4,8 @@ let mongoose = require('mongoose'),
     user = require('../models/user-schema');
 
 const nodemailer = require('nodemailer');
-const crypto = require("crypto");
 const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt');
-
-const transporter = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-        user: process.env.EMAIL_USERNAME,
-        pass: process.env.EMAIL_PASSWORD,
-    },
-});
 
 
 router.post('/create', async (req, res) => {
@@ -59,8 +50,8 @@ router.post('/create', async (req, res) => {
             service: 'gmail',
             host: 'smtp.gmail.com',  // true for 465, false for other ports
             auth: {
-                user: "wafiqhey@gmail.com",
-                pass: "tawehrlqrjlbozbo",
+                user: "nexeatech@gmail.com",
+                pass: "yolskfowjdokwhxa",
             },
             tls: {
                 rejectUnauthorized: false
@@ -69,7 +60,7 @@ router.post('/create', async (req, res) => {
 
         // setup email data with unicode symbols
         let mailOptions = {
-            from: '<hairul@gmail.com>', // sender address
+            from: '<NEXEATech@gmail.com>', // sender address
             to: email, // list of receivers
             subject: 'Startup Database Account Creation', // Subject line
             text: 'Hello world?', // plain text body
@@ -254,8 +245,8 @@ router.post('/verifyUser', async (req, res) => {
             service: 'gmail',
             host: 'smtp.gmail.com',  // true for 465, false for other ports
             auth: {
-                user: "wafiqhey@gmail.com",
-                pass: "tawehrlqrjlbozbo",
+                user: "nexeatech@gmail.com",
+                pass: "yolskfowjdokwhxa",
             },
             tls: {
                 rejectUnauthorized: false
@@ -264,7 +255,7 @@ router.post('/verifyUser', async (req, res) => {
 
         // setup email data with unicode symbols
         let mailOptions = {
-            from: '<hairul@m.nexea.com>', // sender address
+            from: '<NEXEATech@gmail.com>', // sender address
             to: User.email, // list of receivers
             subject: 'Startup Database Account Verification', // Subject line
             text: 'Email Verified', // plain text body

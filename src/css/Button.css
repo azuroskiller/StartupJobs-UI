@@ -21,6 +21,16 @@
     color: #ffffff;
     border: 1px solid var(--primary);
 }
+
+.btn--forgot{
+    width: 100%;
+    padding: 6px 10px;
+    margin-top: 3px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    display: block;
+}
+
 .btn--edit {
     background-color: #75bacf;
     color: #ffffff;

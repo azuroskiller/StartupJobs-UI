@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-
+import { Button } from './Button';
 import '../css/Forms.css'
 
 export default class Login extends Component {
@@ -12,6 +12,10 @@ export default class Login extends Component {
             password: ''
         };
         this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    forgotPassword = () => {
+        window.location.href = '/passwordCreation'
     }
 
     onSubmit(e) {
@@ -76,6 +80,15 @@ export default class Login extends Component {
                     <div className="form-group">
                         <input type="submit" value="Login" className="btn btn-success btn-block" />
                     </div>
+
+                    <Button onClick={this.forgotPassword}
+                        className='btnsForgot'
+                        buttonStyle='btn--forgot'
+                        buttonSize='btn--small'
+                        buttonColour='red'
+                    >
+                        Forgot Password
+                    </Button>
                 </form>
             </div>
         )

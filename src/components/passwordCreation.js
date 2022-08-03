@@ -58,7 +58,7 @@ export default class FinishUser extends Component {
 
         return (
             <div className="form">
-                <h2 className="text-center"> Account Creation Page</h2>
+                <h2 className="text-center"> Password Page</h2>
                 <form onSubmit={this.onSubmit}>
 
                     <label>Email:</label>

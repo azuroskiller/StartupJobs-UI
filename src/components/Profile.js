@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import '../css/Forms.css'
+import { Button } from './Button';
 
 
 export default class Profile extends Component {
@@ -18,6 +19,10 @@ export default class Profile extends Component {
             position: '',
             id: ''
         }
+    }
+
+    changePassword = () => {
+        window.location.href = '/passwordCreation'
     }
 
     componentDidMount() {
@@ -120,7 +125,7 @@ export default class Profile extends Component {
                         placeholder="Enter Password"
                     />
 
-                    <label>Company:</label>
+                    {/* <label>Company:</label>
                     <input
                         id="company"
                         type="text"
@@ -136,11 +141,19 @@ export default class Profile extends Component {
                         required
                         value={this.state.position}
                         onChange={(e) => this.setState({ position: e.target.value })}
-                    />
+                    /> */}
 
                     <div className="form-group">
                         <input type="submit" value="Update Profile" className="btn btn-success btn-block" />
                     </div>
+                    <Button onClick={this.changePassword}
+                        className='btnsEdit'
+                        buttonStyle='btn--forgot'
+                        buttonSize='btn--small'
+                        buttonColour='red'
+                    >
+                        Change Password
+                    </Button>
                 </form>
             </div>
         )
