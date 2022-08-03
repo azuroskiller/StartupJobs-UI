@@ -8,7 +8,7 @@ const userRoute = require('../server/routes/user')
 const jobRoute = require('../server/routes/jobs')
 
 mongoose
-    .connect("mongodb+srv://hairul:hairul123@crawler1.u1w6t.mongodb.net/?retryWrites=true&w=majority")
+    .connect("mongodb+srv://NXTech4021:NxTech1204@startupjobsdb.qrtpi.mongodb.net/?retryWrites=true&w=majority")
     .then((x) => {
         console.log("Connected successfully to mongo")
     })
